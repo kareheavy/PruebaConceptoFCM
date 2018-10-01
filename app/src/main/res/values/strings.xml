@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">PruebaConceptoFCM</string>
+    <string name="normal.channel.id">channel.id.notification.normal</string>
+    <string name="normal.channel.name">Oferta normal</string>
+</resources>
