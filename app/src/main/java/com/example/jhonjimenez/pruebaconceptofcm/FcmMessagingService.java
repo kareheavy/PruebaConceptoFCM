@@ -10,6 +10,7 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
@@ -19,6 +20,12 @@ public class FcmMessagingService extends FirebaseMessagingService {
     private static final String DESCUENTO = "descuento";
 
     public FcmMessagingService() {
+    }
+
+    @Override
+    public void onNewToken(String s) {
+        super.onNewToken(s);
+        Log.e("NEW_TOKEN", s);
     }
 
     @Override
@@ -60,8 +67,9 @@ public class FcmMessagingService extends FirebaseMessagingService {
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            String channelId = getString(R.string.normal_channel_id);
-            String channelName = getString(R.string.normal_channel_name);
+            String channelId = desc < .10 ? getString(R.string.low_channel_id) :
+                    getString(R.string.normal_channel_id);
+            String channelName = desc < .10 ? getString(R.string.low_channel_name) : getString(R.string.normal_channel_name);
             NotificationChannel channel = new NotificationChannel(channelId, channelName,
                     NotificationManager.IMPORTANCE_DEFAULT);
             channel.enableVibration(true);
